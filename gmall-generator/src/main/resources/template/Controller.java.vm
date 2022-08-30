@@ -1,23 +1,30 @@
 package ${package}.${moduleName}.controller;
 
 import java.util.Arrays;
+import java.util.Map;
 
-import com.java.core.bean.PageVo;
-import com.java.core.bean.QueryCondition;
-import com.java.core.bean.Resp;
+
+import com.atguigu.core.bean.PageVo;
+import com.atguigu.core.bean.QueryCondition;
+import com.atguigu.core.bean.Resp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import ${package}.${moduleName}.entity.${className};
+import ${package}.${moduleName}.entity.${className}Entity;
 import ${package}.${moduleName}.service.${className}Service;
+
+
+
 
 /**
  * ${comments}
+ *
  * @author ${author}
- * @since  ${datetime}
+ * @email ${email}
+ * @date ${datetime}
  */
 @Api(tags = "${comments} 管理")
 @RestController
@@ -45,8 +52,8 @@ public class ${className}Controller {
     @ApiOperation("详情查询")
     @GetMapping("/info/{${pk.attrname}}")
     @PreAuthorize("hasAuthority('${moduleName}:${pathName}:info')")
-    public Resp<${className}> info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
-		${className} ${classname} = ${classname}Service.getById(${pk.attrname});
+    public Resp<${className}Entity> info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
+		${className}Entity ${classname} = ${classname}Service.getById(${pk.attrname});
 
         return Resp.ok(${classname});
     }
@@ -57,7 +64,7 @@ public class ${className}Controller {
     @ApiOperation("保存")
     @PostMapping("/save")
     @PreAuthorize("hasAuthority('${moduleName}:${pathName}:save')")
-    public Resp<Object> save(@RequestBody ${className} ${classname}){
+    public Resp<Object> save(@RequestBody ${className}Entity ${classname}){
 		${classname}Service.save(${classname});
 
         return Resp.ok(null);
@@ -69,7 +76,7 @@ public class ${className}Controller {
     @ApiOperation("修改")
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('${moduleName}:${pathName}:update')")
-    public Resp<Object> update(@RequestBody ${className} ${classname}){
+    public Resp<Object> update(@RequestBody ${className}Entity ${classname}){
 		${classname}Service.updateById(${classname});
 
         return Resp.ok(null);
